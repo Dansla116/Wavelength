@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wavelength", "Wavelength\Wavelength.csproj", "{37A57C3A-205D-438B-BE74-18909DFF8360}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wavelength.UI", "Wavelength\Wavelength.UI.csproj", "{37A57C3A-205D-438B-BE74-18909DFF8360}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wavelength.DAL", "Wavelength.DAL\Wavelength.DAL.csproj", "{1E5C3C0D-220A-4985-9859-29E7FCCB2A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wavelength.BLL", "Wavelength.BLL\Wavelength.BLL.csproj", "{4027863E-24A6-49EC-ABBB-A93824773C6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{37A57C3A-205D-438B-BE74-18909DFF8360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37A57C3A-205D-438B-BE74-18909DFF8360}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37A57C3A-205D-438B-BE74-18909DFF8360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E5C3C0D-220A-4985-9859-29E7FCCB2A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E5C3C0D-220A-4985-9859-29E7FCCB2A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E5C3C0D-220A-4985-9859-29E7FCCB2A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E5C3C0D-220A-4985-9859-29E7FCCB2A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4027863E-24A6-49EC-ABBB-A93824773C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4027863E-24A6-49EC-ABBB-A93824773C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4027863E-24A6-49EC-ABBB-A93824773C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4027863E-24A6-49EC-ABBB-A93824773C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

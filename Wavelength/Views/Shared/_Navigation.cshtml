@@ -1,0 +1,13 @@
+﻿@{ 
+    Layout = null;
+}
+
+<script>
+    var application = {};
+    application.controllers = {};
+    application.controllers.Home = {}
+
+    application.controllers.Cards = {}
+    application.controllers.Cards.ReadAll = "@Url.Action("ReadAll", "Cards")";
+    application.controllers.Cards.Create = "@Url.Action("Create", "Cards")";
+</script>
