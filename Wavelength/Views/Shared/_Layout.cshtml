@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/font-awesome.min.css")
-    @Styles.Render("~/Content/fontawesome-all.min.css")
     @Styles.Render("~/Content/toastr.min.css")
 
     @Scripts.Render("~/bundles/modernizr")
@@ -33,7 +32,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li><a href="@Url.Action("Index", "Cards")">Cards</a></li>
+                    <li><a href="@Url.Action("Index", "Cards" )">Cards</a></li>
+                    <li><a href="@Url.Action("Index", "Play")">Play</a></li>
                 </ul>
             </div>
         </div>

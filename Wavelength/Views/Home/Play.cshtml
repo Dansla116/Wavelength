@@ -1,17 +1,49 @@
-﻿
+﻿@model PlayVM
+@using Wavelength.BLL.Models
+@using Newtonsoft.Json
+
 @{
-    Layout = null;
+    ViewBag.Title = "Play";
+    System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
 }
 
-<!DOCTYPE html>
+<script>
+    var Model = @Html.Raw(JsonConvert.SerializeObject(Model));
+</script>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Play</title>
-</head>
-<body>
-    <div> 
+@Scripts.Render("~/Scripts/Home/Play.js")
+
+<body ng-app="Wavelength" ng-controller="Play">
+    <h2>Play</h2>
+    <div id="NewPlayer" ng-show="LocalUser.Role == Roles[0].id">
+        <p>You are a new player.</p>
+        <label for="code">Enter a code.</label>
+        <input id="code" type="text" ng-model="JoinModel.Code" />
+        <label for="name">Enter a name.</label>
+        <input id="name" type="text" ng-model="JoinModel.Name" />
+        <input type="button" value="Join" ng-click="Join()" />
+    </div>
+
+    <div id="Lobby" ng-if="LocalUser.Role == Roles[1].id">
+        <p>You are in the lobby.</p>
+
+        <div ng-repeat="u in Users">
+            <span>{{u.Name}}</span>
+        </div>
+
+        <input type="button" value="Quit" ng-click="Quit()" />
+        <input type="button" value="Start" ng-click="Start()" />
+    </div>
+
+    <div id="Psychic" ng-if="LocalUser.Role == Roles[2].id">
+        <p>You are the psychic.  The dial is set to {{dial.bullseye}}</p>
+    </div>
+
+    <div id="Offense" ng-if="LocalUser.Role == Roles[3].id">
+        <p>You are on the psychic's team.</p>
+    </div>
+
+    <div id="Defense" ng-if="LocalUser.Role == Roles[4].id">
+        <p>You are not on the psychic's team.</p>
     </div>
 </body>
-</html>

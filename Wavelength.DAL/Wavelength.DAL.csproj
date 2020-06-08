@@ -150,6 +150,8 @@
     <Compile Include="Context\IDBContext.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="DomainModels\CardData.cs" />
+    <Compile Include="DomainModels\GameData.cs" />
+    <Compile Include="DomainModels\UserData.cs" />
     <Compile Include="DomainModels\_Base.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

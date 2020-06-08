@@ -50,6 +50,7 @@ namespace Wavelength.BLL.Services {
             }
             return Response;
         }
+
         public ServiceResponse<List<Card>> ReadAll() {
             try {
                 ResponseList.data = Repo.ReadAll().ToLogicList();

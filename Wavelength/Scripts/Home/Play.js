@@ -1,45 +1,49 @@
-﻿var app = angular.module('Wavelength', []).controller('ViewCards', ['$scope', function ($scope) {
-    var Controller = application.controllers.Cards;
+﻿var app = angular.module('Wavelength', []).controller('Play', ['$scope', function ($scope) {
+    var Controller = application.controllers.Play;
     /*** Constructors ********************************************************************************/
-    var Card = function (Left, Right, Advanced) {
+    var SelectOption = function (id, Name) {
         var t = this;
-        t.Left = Left;
-        t.Right = Right;
-        t.Advanced = Advanced;
+        t.id = id;
+        t.Name = Name;
     }
     /******************************************************************************** Constructors ***/
     /*** Declarations ********************************************************************************/
-    $scope.data = {
-        Cards: [],
-        CreateModel: {
-            Left: '',
-            Right: '',
-            Advanced: false
-        }
-    };
+    $scope.States = [];
+    $scope.Roles = [];
     /******************************************************************************** Declarations ***/
     /*** Initializations *****************************************************************************/
-    $scope.data.Cards = Model;
+    $.each(Model.States, function (i, s) {
+        $scope.States.push(new SelectOption(parseInt(s.Value), s.Text));
+    });
+    $.each(Model.Roles, function (i, r) {
+        $scope.Roles.push(new SelectOption(parseInt(r.Value), r.Text));
+    });
+
+    $scope.LocalUser = {
+        Role: $scope.Roles[0].id,
+        Name: ''
+    }
+    $scope.JoinModel = {
+        Code: '',
+        Name: ''
+    }
     /***************************************************************************** Initializations ***/
 
-    $scope.Create = function () {
+    $scope.Join = function () {
         $.ajax({
             type: 'POST',
-            url: Controller.Create,
+            url: Controller.Join,
             data: JSON.stringify({
-                Model: $scope.data.CreateModel
+                Code: $scope.JoinModel.Code,
+                Name: $scope.JoinModel.Name
             }),
             contentType: 'application/json; carset=utf-8',
             datatype: 'json',
             cache: false,
             success: function (result) {
                 if (result.success) {
-                    $scope.data.Cards.push(new Card(
-                        result.data.Left, result.data.Right, result.data.Advanced
-                    ));
-                    $scope.data.CreateModel.Left = '';
-                    $scope.data.CreateModel.Right = '';
-                    $scope.data.CreateModel.Advanced = false;
+                    $scope.LocalUser = result.data.LocalUser;
+                    $scope.Users = result.data.Users;
 
                     $('#focus').focus();
                     $scope.$apply();
@@ -50,5 +54,7 @@
             }
         })
     }
+
+    console.log($scope.LocalUser.Role);
 
 }])

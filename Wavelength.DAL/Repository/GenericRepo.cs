@@ -108,8 +108,15 @@ namespace Wavelength.DAL.Repository {
         }
     }
 
-     public class CardRepo : GenericRepo<CardData>, ICardRepo {
+    public class CardRepo : GenericRepo<CardData>, ICardRepo {
         public CardRepo(IDBContext Context) : base(Context) { }
     }
 
+    public class GameRepo : GenericRepo<GameData>, IGameRepo {
+        public GameRepo(IDBContext Context) : base(Context) { }
+    }
+
+    public class UserRepo : GenericRepo<UserData>, IUserRepo {
+        public UserRepo(IDBContext Context) : base(Context) { }
+    }
 }

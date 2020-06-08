@@ -22,4 +22,6 @@ namespace Wavelength.DAL.Repository {
     }
 
     public interface ICardRepo : IRepository<CardData> { }
+    public interface IGameRepo : IRepository<GameData> { }
+    public interface IUserRepo : IRepository<UserData> { }
 }

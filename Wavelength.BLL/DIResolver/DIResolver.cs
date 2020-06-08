@@ -12,7 +12,9 @@ namespace Wavelength.BLL.DIResolver {
     public class BLLModule : NinjectModule {
         public override void Load() {
             //Services
+            Bind<ISelectOptionService>().To<SelectOptionService>();
             Bind<ICardService>().To<CardService>();
+            Bind<IPlayService>().To<PlayService>();
         }
     }
 
@@ -23,10 +25,14 @@ namespace Wavelength.BLL.DIResolver {
 
             //Domain Models
             Bind<ICardData>().To<CardData>();
+            Bind<IGameData>().To<GameData>();
+            Bind<IUserData>().To<UserData>();
 
             //Repositories
             Bind(typeof(IRepository<>)).To(typeof(GenericRepo<>)).Named("Repo");
             Bind<ICardRepo>().To<CardRepo>();
+            Bind<IGameRepo>().To<GameRepo>();
+            Bind<IUserRepo>().To<UserRepo>();
         }
     }
 }
