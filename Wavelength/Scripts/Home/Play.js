@@ -28,7 +28,6 @@
         Name: ''
     }
     /***************************************************************************** Initializations ***/
-
     $scope.Join = function () {
         $.ajax({
             type: 'POST',
@@ -42,6 +41,7 @@
             cache: false,
             success: function (result) {
                 if (result.success) {
+                    $scope.Game = result.data.Game;
                     $scope.LocalUser = result.data.LocalUser;
                     $scope.Users = result.data.Users;
 
@@ -52,9 +52,66 @@
                     toastr.error('Error: (500) Internal Server Error<br/>' + result.message);
                 }
             }
-        })
-    }
+        });
+    };
 
-    console.log($scope.LocalUser.Role);
+    $scope.Start = function () {
+        $.ajax({
+            type: 'POST',
+            url: Controller.Start,
+            data: JSON.stringify({
+                Code: $scope.Game.Code,
+                Users: $scope.Users
+            }),
+            contentType: 'application/json; carset=utf-8',
+            datatype: 'text',
+            cache: false,
+            success: function (result) {
+                if (result.success) {
+                    // response here
+                    $scope.$apply();
+                    toastr.success(result.message);
+                } else {
+                    toastr.error('Error: (500) Internal Server Error<br/>' + result.message);
+                }
+            }
+        });
+    };
 
-}])
+    $scope.SetupPsychic = function () {
+        $.ajax({
+            type: 'POST',
+            url: Controller.SetupPsychic,
+            data: JSON.stringify({
+                Code: $scope.Game.Code,
+                Psychic: $scope.LocalUser,
+                Users: $scope.Users
+            }),
+            contentType: 'application/json; carset=utf-8',
+            datatype: 'json',
+            cache: false,
+            success: function (result) {
+                if (result.success) {
+                    // response here
+                    $scope.$apply();
+                    toastr.success(result.message);
+                } else {
+                    toastr.error('Error: (500) Internal Server Error<br/>' + result.message);
+                }
+            }
+        });
+    };
+
+    /*** SignalR */
+    //$scope.Connection = new signalR.HubConnectionBuilder().withUrl("/playHub").build();
+    $scope.Connection.PlayHub.client.getUsers = function (result) {
+        if (result !== null) {
+            $scope.Users = Users;
+        }
+    };
+
+
+/*    $scope.Connection.UpdatesUsers("UpdateUsers", function (Users) {
+        $scope.Users = Users;
+    });*/
+}]);

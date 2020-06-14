@@ -11,6 +11,7 @@
     var Model = @Html.Raw(JsonConvert.SerializeObject(Model));
 </script>
 
+@Scripts.Render("~/Scripts/dist/browser/signalr.min.js")
 @Scripts.Render("~/Scripts/Home/Play.js")
 
 <body ng-app="Wavelength" ng-controller="Play">
@@ -36,7 +37,8 @@
     </div>
 
     <div id="Psychic" ng-if="LocalUser.Role == Roles[2].id">
-        <p>You are the psychic.  The dial is set to {{dial.bullseye}}</p>
+        <p>You are the psychic.</p>
+        <span>The dial is set to <b>{{Dial.Bullseye}}</b></span>
     </div>
 
     <div id="Offense" ng-if="LocalUser.Role == Roles[3].id">
