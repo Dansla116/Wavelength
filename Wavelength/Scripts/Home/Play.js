@@ -1,5 +1,12 @@
 ﻿var app = angular.module('Wavelength', []).controller('Play', ['$scope', function ($scope) {
     var Controller = application.controllers.Play;
+
+    /*** SignalR */
+    $scope.Connection = new signalR.HubConnectionBuilder().withUrl("/playHub").build();
+    $scope.Connection.start().then(function () {
+        console.log("Connection Established!");
+    });
+
     /*** Constructors ********************************************************************************/
     var SelectOption = function (id, Name) {
         var t = this;
@@ -29,7 +36,9 @@
     }
     /***************************************************************************** Initializations ***/
     $scope.Join = function () {
-        $.ajax({
+        $scope.Connection.invoke('Join', $scope.JoinModel.Code, $scope.JoinModel.Name)
+
+/*        $.ajax({
             type: 'POST',
             url: Controller.Join,
             data: JSON.stringify({
@@ -52,8 +61,15 @@
                     toastr.error('Error: (500) Internal Server Error<br/>' + result.message);
                 }
             }
-        });
+        });*/
     };
+
+    // Get Users
+    $scope.Connection.on('UpdateUsers', function (result) {
+        if (result !== null) {
+            $scope.Users = Users;
+        }
+    });
 
     $scope.Start = function () {
         $.ajax({
@@ -101,17 +117,4 @@
             }
         });
     };
-
-    /*** SignalR */
-    //$scope.Connection = new signalR.HubConnectionBuilder().withUrl("/playHub").build();
-    $scope.Connection.PlayHub.client.getUsers = function (result) {
-        if (result !== null) {
-            $scope.Users = Users;
-        }
-    };
-
-
-/*    $scope.Connection.UpdatesUsers("UpdateUsers", function (Users) {
-        $scope.Users = Users;
-    });*/
 }]);

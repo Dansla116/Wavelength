@@ -12,7 +12,11 @@ using Wavelength.Hubs;
 /*using Wavelength.Hubs;
 */
 namespace Wavelength.Controllers {
-    public class PlayController : Controller {
+    public interface IPlayController {
+        ActionResult Join(string Code, string Name);
+    }
+
+    public class PlayController : Controller, IPlayController {
         private IPlayService Service;
         private ISelectOptionService SelectOptionService;
 
@@ -33,18 +37,9 @@ namespace Wavelength.Controllers {
             return View("~/Views/Home/Play.cshtml", response);
         }
 
-        public Task Join(string Code, string Name) {
+        public ActionResult Join(string Code, string Name) {
             var response = Service.Join(Code, Name);
-/*            await Clients.All.getUsers = 
-*/
-
-/*            var context = GlobalHost.ConnectionManager.GetHubContext<PlayHub>();
-            context.Clients.All.methodInJavascript(response.data.Users);*/
-        }
-
-/*        public ActionResult Start(string Code, List<User> Users) {
-            var response = Service.Start(Code);
             return Json(response);
-        }*/
+        }
     }
 }
